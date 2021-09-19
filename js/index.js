@@ -25,8 +25,9 @@ conn.connect(
 
 //資料庫連線設定    
 
-function show_follow(user_id) {
-    conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
+module.exports.show_follow = function show_follow(user_id) {
+    return new Promise((resolve) => {
+        conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
         function (err, results) {
             if (err) throw err;
             var follow_lest = []
@@ -45,9 +46,34 @@ function show_follow(user_id) {
             if (results[0].follow_5 != null) {
                 follow_lest.push(results[0].follow_5)
             }
-            console.log(follow_lest)
-        })
-};
+            resolve(follow_lest)
+        }) 
+    })
+}
+
+// function show_follow(user_id) {
+//     conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
+//         function (err, results) {
+//             if (err) throw err;
+//             var follow_lest = []
+//             if (results[0].follow_1 != null) {
+//                 follow_lest.push(results[0].follow_1)
+//             }
+//             if (results[0].follow_2 != null) {
+//                 follow_lest.push(results[0].follow_2)
+//             }
+//             if (results[0].follow_3 != null) {
+//                 follow_lest.push(results[0].follow_3)
+//             }
+//             if (results[0].follow_4 != null) {
+//                 follow_lest.push(results[0].follow_4)
+//             }
+//             if (results[0].follow_5 != null) {
+//                 follow_lest.push(results[0].follow_5)
+//             }
+//             console.log(follow_lest)
+//         })
+// };
 
 //顯示使用者關注清單
 

@@ -28,7 +28,7 @@ conn.connect(
 
 module.exports.list = function list(stock) {
     return new Promise((resolve) => {
-        conn.query('SELECT * FROM 每日股票交易事實表 where 股票代號 = ' + String(stock) + ' and 日期序號 = ' + date_db(), (err, results) => {
+        conn.query('SELECT * FROM 每日股票交易事實表 where 股票代號 = ' + String(stock) + ' order by 日期序號 DESC ' , (err, results) => {
             if (err) { throw err; }
             let open = String(results[0].開盤價)
             let close = String(results[0].收盤價)
@@ -37,21 +37,11 @@ module.exports.list = function list(stock) {
             let high = String(results[0].最高點)
             let low = String(results[0].最低點)
             let lot = String(results[0].成交數)
-            let messagee = message = "今天日期為:" + date_list() + "\n股票代號:" + String(stock) + "\n最新收盤價:" + close + "\n漲跌:" + upanddowns +
-                "\n最高點:" + high + "\n最低點:" + low + "\n成交數:" + lot
+            let messagee = message = "\n"+"今天日期為:" + date_list() + "\n股票代號:" + String(stock) + "\n最新收盤價:" + close + "\n漲跌:" + upanddowns +
+                "\n最高點:" + high + "\n最低點:" + low + "\n成交數:" + lot 
             resolve(messagee)
         })
     })
-}
-
-function date_db() {
-    let Today = new Date()
-    let month = Today.getMonth() + 1
-    if (month < 10) {
-        month = "0" + month
-    }
-    let Td = "'" + Today.getFullYear() + "-" + month + "-" + (Today.getDate() - 4) + "'"
-    return String(Td)
 }
 
 function date_list() {
@@ -60,7 +50,7 @@ function date_list() {
     if (month < 10) {
         month = "0" + month
     }
-    let Td = +Today.getFullYear() + "-" + month + "-" + (Today.getDate() - 4)
+    let Td = +Today.getFullYear() + "-" + month + "-" + (Today.getDate())
     return (String(Td))
 }
 
