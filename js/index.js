@@ -28,65 +28,39 @@ conn.connect(
 module.exports.show_follow = function show_follow(user_id) {
     return new Promise((resolve) => {
         conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
-        function (err, results) {
-            if (err) throw err;
-            var follow_lest = []
-            if (results[0].follow_1 != null) {
-                follow_lest.push(results[0].follow_1)
-            }
-            if (results[0].follow_2 != null) {
-                follow_lest.push(results[0].follow_2)
-            }
-            if (results[0].follow_3 != null) {
-                follow_lest.push(results[0].follow_3)
-            }
-            if (results[0].follow_4 != null) {
-                follow_lest.push(results[0].follow_4)
-            }
-            if (results[0].follow_5 != null) {
-                follow_lest.push(results[0].follow_5)
-            }
-            resolve(follow_lest)
-        }) 
+            function (err, results) {
+                if (err) throw err;
+                var follow_lest = []
+                if (results[0].follow_1 != null) {
+                    follow_lest.push(results[0].follow_1)
+                }
+                if (results[0].follow_2 != null) {
+                    follow_lest.push(results[0].follow_2)
+                }
+                if (results[0].follow_3 != null) {
+                    follow_lest.push(results[0].follow_3)
+                }
+                if (results[0].follow_4 != null) {
+                    follow_lest.push(results[0].follow_4)
+                }
+                if (results[0].follow_5 != null) {
+                    follow_lest.push(results[0].follow_5)
+                }
+                resolve(follow_lest)
+            })
     })
 }
 
-// function show_follow(user_id) {
-//     conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
-//         function (err, results) {
-//             if (err) throw err;
-//             var follow_lest = []
-//             if (results[0].follow_1 != null) {
-//                 follow_lest.push(results[0].follow_1)
-//             }
-//             if (results[0].follow_2 != null) {
-//                 follow_lest.push(results[0].follow_2)
-//             }
-//             if (results[0].follow_3 != null) {
-//                 follow_lest.push(results[0].follow_3)
-//             }
-//             if (results[0].follow_4 != null) {
-//                 follow_lest.push(results[0].follow_4)
-//             }
-//             if (results[0].follow_5 != null) {
-//                 follow_lest.push(results[0].follow_5)
-//             }
-//             console.log(follow_lest)
-//         })
-// };
-
 //顯示使用者關注清單
 
-function new_user_creat(user_id) {
-    conn.query('INSERT INTO follow_list (user_id) VALUES (?);', + [String(user_id)],
+module.exports.new_user_creat = function new_user_creat(user_id) {
+    conn.query('INSERT INTO follow_list (user_id) VALUES (?);', [user_id],
         function (err, results) {
             if (err) throw err;
-            console.log(results[0])
         })
 };
 
 //為第一次加入好友的使用者建立關注清單
-
 
 function insertData_load(user_id, stock) {
     conn.query('SELECT * FROM follow_list where user_id = ' + String(user_id),
@@ -95,22 +69,22 @@ function insertData_load(user_id, stock) {
             if (results[0].follow_1 == null) {
                 let location = "follow_1"
                 UPDATE(user_id, stock, location)
-            }else if(results[0].follow_2 == null){
+            } else if (results[0].follow_2 == null) {
                 let location = "follow_2"
                 UPDATE(user_id, stock, location)
-            }else if(results[0].follow_3 == null){
+            } else if (results[0].follow_3 == null) {
                 let location = "follow_3"
                 UPDATE(user_id, stock, location)
-            }else if(results[0].follow_4 == null){
+            } else if (results[0].follow_4 == null) {
                 let location = "follow_4"
                 UPDATE(user_id, stock, location)
-            }else if(results[0].follow_5 == null){
+            } else if (results[0].follow_5 == null) {
                 let location = "follow_5"
                 UPDATE(user_id, stock, location)
-            }else{
+            } else {
                 console.log("關注清單已滿")
             }
-            
+
         })
 };
 
@@ -132,16 +106,16 @@ function remove_Data_load(user_id, stock) {
             if (String(results[0].follow_1) == String(stock)) {
                 let location = "follow_1"
                 UPDATE_remove(user_id, stock, location)
-            }else if(String(results[0].follow_2) == String(stock)){
+            } else if (String(results[0].follow_2) == String(stock)) {
                 let location = "follow_2"
                 UPDATE_remove(user_id, stock, location)
-            }else if(String(results[0].follow_3) == String(stock)){
+            } else if (String(results[0].follow_3) == String(stock)) {
                 let location = "follow_3"
                 UPDATE_remove(user_id, stock, location)
-            }else if(String(results[0].follow_4) == String(stock)){
+            } else if (String(results[0].follow_4) == String(stock)) {
                 let location = "follow_4"
                 UPDATE_remove(user_id, stock, location)
-            }else if(String(results[0].follow_5) == String(stock)){
+            } else if (String(results[0].follow_5) == String(stock)) {
                 let location = "follow_5"
                 UPDATE_remove(user_id, stock, location)
             }
@@ -159,22 +133,22 @@ function UPDATE_remove(user_id, stock, location) {
 
 //移除股票代號
 
-module.exports.check_message = function check_message(user_id,message){
+module.exports.check_message = function check_message(user_id, message) {
     let messages = String(message)
     let user_ids = String(user_id)
     check_new(user_ids)
-    if(messages=="關注清單"){
+    if (messages == "關注清單") {
         show_follow(user_ids)
     }
-    else if(messages.substr(0,1)=="+"){
-        stock = String(messages.substr(1,4))
+    else if (messages.substr(0, 1) == "+") {
+        stock = String(messages.substr(1, 4))
         insertData_load(user_ids, stock)
     }
-    else if(messages.substr(0,1)=="-"){
-        stock = String(messages.substr(1,4))
+    else if (messages.substr(0, 1) == "-") {
+        stock = String(messages.substr(1, 4))
         remove_Data_load(user_ids, stock)
     }
-    else{
+    else {
         console.log("無法辨識")
     }
 }
@@ -184,7 +158,7 @@ function check_new(user_id) {
     conn.query('SELECT user_id FROM follow_list where user_id = ' + user_ids,
         function (err, results) {
             if (err) throw err;
-            if(results==""){
+            if (results == "") {
                 new_user_creat(user_ids)
             }
         })
@@ -192,4 +166,5 @@ function check_new(user_id) {
 
 //使用者關注清單至資料庫
 
-
+// user = "kiriboku"
+// new_user_creat(user)
