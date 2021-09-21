@@ -36,8 +36,8 @@ module.exports.list = function list(stock) {
             let high = String(results[0].最高點)
             let low = String(results[0].最低點)
             let lot = String(results[0].成交數)
-            let messagee = message = "===================\n"+"今天日期為:" + date_list() + "\n股票代號:" + String(stock) + "\n最新收盤價:" + close + "\n漲跌:" + upanddowns +
-                "\n最高點:" + high + "\n最低點:" + low + "\n成交數:" + lot 
+            let messagee = message = "今天日期為:" + date_list() + "\n股票代號:" + String(stock) + "\n最新收盤價:" + close + "\n漲跌:" + upanddowns +
+                "\n最高點:" + high + "\n最低點:" + low + "\n成交數:" + lot + "\n==================="
             resolve(messagee)
         })
     })

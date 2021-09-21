@@ -31,3 +31,20 @@
 //     const oneSecond = await oneSecond;
 //     return oneSecond
 // }
+
+//使用者呼叫watch_list
+
+// let t = ""
+//   Promise.all([index.show_follow(event.source.userId)])
+//     .then(([oneSecond]) => {
+//       oneSecond.forEach(element => Promise.all([index2.list(element)])
+//         .then(([oneSecond]) => {
+//           t = t + "\n" + oneSecond
+//         }));
+//     })
+//   setTimeout(() => {
+//     // 三秒後回傳資料
+//     event.reply(t).then(function (data) {
+//       // 當訊息成功回傳後的處理
+//     })
+//   }, 5000);
