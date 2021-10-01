@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 
+
 var config =
 {
     host: '127.0.0.1',
@@ -147,4 +148,3 @@ module.exports.check_message = function check_message(user_id, message) {
 }
 
 //確認使用者訊息
-
