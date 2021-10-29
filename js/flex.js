@@ -1373,3 +1373,241 @@ module.exports.flex_news_2610 = function flex_news_2610(array) {
   return text
 }
 
+module.exports.watch_list_1_item = function watch_list(array) {
+  let color = 2
+  if(color==1){
+    color_text = "#FF0000"
+  }else{
+    color_text = "#008000"
+  }
+  let text = {
+    "type": "flex",
+    "altText": "this is a flex message",
+    "contents": {
+      "type": "carousel",
+      "contents": [
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://lh3.googleusercontent.com/61cZkoXqIHFDRJM_6rSHW7lTqHEeAOcV1-E1Ri59s94tUlcMcYC4pZliiqp_pfwrM3lBfZrAck3JC-wtbHNcoRCJeLERyieXZ4qmmPUGtFEX48PEHQiwZCVDe9M_3E8R9h-2eWiGDtkQA5HLfimLsZH8e2vtrH0iYW5jg8IYWvG2MOILJRGwJtH9Q2oV-6dCBmShKozjVTb514qWLplfldxlxtS_Rbfhbm7IuEdBHtY76ZbT7c1HzV2vr4HaHjXgxc7nlS_y-PewqL5B4CDgAkKCHxQm-YeKnuQc3-rsLIqBWtv5sRK1I1fny7M74iFSf37VWJN0nm9jKY2bm-ago2w7v7PNEuN8YVFa4iAVWI1RcnJ-vveAL9478n9YQ63_uBB7JUjKkEe6FbaCpMLQJekJwDlMUO_aLcwNFnCCKDilQ7Eu7NmlxuwW7ockkA8KTijjgeH7PTFMp2bWdp-1ByQTGaoTYWMICP50rD2AahmsadMN19heZrVbyT46ujXgKy7mRuwXvrO6oj9Nbgb5WFtIiiYu3Nttuw47aMmbv-w8x9CQHKJnmzQzLej3Ceb1_v3t_tA7ek5AaAriU5UK46Lq2b4jGcRRMj7r1lzMQvkU1l3E67Aa2hr9yJ2etYGxvBoYQDpuNdBOT_JhtiWGB5mKCDZREt1JksY_VeWugXUFfnWip_dXEPl9iBbg5KIywHSRhr_mvBlSw8ws6kTeWd_E=w662-h882-no?authuser=0",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "2:3",
+                "gravity": "top"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][2],
+                    "size": "33px",
+                    "weight": "bold",
+                    "align": "center"
+                  }
+                ],
+                "position": "absolute",
+                "offsetTop": "93px",
+                "width": "100%"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][3],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "152px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][4],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "190px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][5],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "230px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][6],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "268px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][7],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "308px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][8],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "152px",
+                "offsetStart": "205px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][9],
+                    "size": "18px",
+                    "weight": "bold",
+                    "color": color_text
+                  }
+                ],
+                "offsetTop": "192px",
+                "offsetStart": "225px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][10],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "230px",
+                "offsetStart": "205px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][11],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "268px",
+                "offsetStart": "205px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][12],
+                    "size": "18px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "308px",
+                "offsetStart": "205px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][2]+"新聞",
+                    "size": "25px",
+                    "weight": "bold",
+                    "action": {
+                      "type": "message",
+                      "label": "action",
+                      "text": "台積電新聞"
+                    }
+                  }
+                ],
+                "offsetTop": "354px",
+                "offsetStart": "90px",
+                "position": "absolute"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": array[0][0],
+                    "size": "15px",
+                    "weight": "bold"
+                  }
+                ],
+                "offsetTop": "400px",
+                "offsetStart": "200px",
+                "position": "absolute"
+              }
+            ],
+            "paddingAll": "0px"
+          }
+        }
+      ]
+    }
+  }
+  return text
+}
