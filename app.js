@@ -1,10 +1,21 @@
 // 引用linebot SDK
 const linebot = require('linebot');
+const line = require('@line/bot-sdk');
 var follow_watch_two = require('./js/follow_watch_two');
 var follow_watch_one = require('./js/follow_watch_one');
 var flex = require("./js/flex");
 var Fuzzball = require('./Fuzzball.js/Fuzzball');
 var News = require("./js/News")
+var user = require("./js/user")
+var Dividend_policy = require("./js/Dividend_policy")
+var dict = require("./js/dict")
+var company = require("./js/company")
+var eps = require("./js/eps")
+var profitability = require("./js/profitability")
+
+const client = new line.Client({
+  channelAccessToken: 'qQ8Jy0v3j3pUlOebdVPnNmj7dxOC1Td8sfDIE7PiMnpxceApOWRmWdbP1buzeStt+WeOY+OFyJDqrkLK/DvIC+9vhED7MdqKoZ1D6q+y8WocAqBMqt1SVQX5LZmkVGv3m6j7fX8gW+CPjzPPJ7AdEAdB04t89/1O/w1cDnyilFU='
+});
 
 // 用於辨識Line Channel的資訊
 var bot = linebot({
@@ -30,6 +41,8 @@ var news_2603 = ["2603新聞", "長榮新聞"]
 var news_2610 = ["2610新聞", "華航新聞"]
 var news_2015 = ["2015新聞", "豐興新聞"]
 
+var array_company = ["2317", "2330", "2377", "2379", "2383", "1101", "2015", "2002", "2603", "2610"];
+
 // 當有人傳送訊息給Bot時
 bot.on('message', function (event) {
   if (event.message.text == "關注清單") {
@@ -51,14 +64,19 @@ bot.on('message', function (event) {
     let stock = event.message.text.substr(1, 4)
     Promise.all([follow_watch_one.show_follow(event.source.userId)])
       .then(([oneSecond]) => {
-        if (oneSecond.includes(stock)) {
-          event.reply('股票代號：' + stock + '已在關注清單')
+        if (array_company.includes(stock)) {
+          if (oneSecond.includes(stock)) {
+            event.reply('股票代號：' + stock + '已在關注清單')
+          }
+          else {
+            event.reply("將股票代號：" + stock + "加入關注清單").then(function (data) {
+              // 當訊息成功回傳後的處理
+              follow_watch_one.stock_insert(event.source.userId, stock)
+            })
+          }
         }
         else {
-          event.reply("將股票代號：" + stock + "加入關注清單").then(function (data) {
-            // 當訊息成功回傳後的處理
-            follow_watch_one.stock_insert(event.source.userId, stock)
-          })
+          event.reply("很抱歉，我們暫時沒有 " + stock + " 的資料")
         }
       })
   } else if (event.message.text.substr(0, 1) == "-") {
@@ -105,61 +123,71 @@ bot.on('message', function (event) {
     else if (news_2330.includes(message) == true) {
       Promise.all([News.search_News_db(2330)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2330(oneSecond))
+          oneSecond.push(dict.dict_toCh("2330"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2317.includes(message) == true) {
       Promise.all([News.search_News_db(2317)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2317(oneSecond))
+          oneSecond.push(dict.dict_toCh("2317"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2377.includes(message) == true) {
       Promise.all([News.search_News_db(2377)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2377(oneSecond))
+          oneSecond.push(dict.dict_toCh("2377"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2379.includes(message) == true) {
       Promise.all([News.search_News_db(2379)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2379(oneSecond))
+          oneSecond.push(dict.dict_toCh("2379"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2015.includes(message) == true) {
       Promise.all([News.search_News_db(2015)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2015(oneSecond))
+          oneSecond.push(dict.dict_toCh("2015"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2383.includes(message) == true) {
       Promise.all([News.search_News_db(2383)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2383(oneSecond))
+          oneSecond.push(dict.dict_toCh("2383"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_1101.includes(message) == true) {
       Promise.all([News.search_News_db(1101)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_1101(oneSecond))
+          oneSecond.push(dict.dict_toCh("1101"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2002.includes(message) == true) {
       Promise.all([News.search_News_db(2002)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2002(oneSecond))
+          oneSecond.push(dict.dict_toCh("2002"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2603.includes(message) == true) {
       Promise.all([News.search_News_db(2603)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2603(oneSecond))
+          oneSecond.push(dict.dict_toCh("2603"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (news_2610.includes(message) == true) {
       Promise.all([News.search_News_db(2610)])
         .then(([oneSecond]) => {
-          event.reply(flex.flex_news_2610(oneSecond))
+          oneSecond.push(dict.dict_toCh("2610"))
+          event.reply(flex.flex_news_stock(oneSecond))
         })
     }
     else if (message == "漲幅最大股價") {
@@ -184,6 +212,44 @@ bot.on('message', function (event) {
             })
         })
     }
+    else if (message == "怎麼選股票") {
+      event.reply(flex.How_to_choice_stock())
+    }
+    else if (message == "新手如何開戶") {
+      event.reply(flex.Open_an_account())
+    }
+    else if (message == "什麼是移動平均線") {
+      event.reply(flex.What_is_movie_average())
+    }
+    else if (message == "2330基本資料") {
+      Promise.all([company.company_data(2330)])
+        .then(([oneSecond]) => {
+          event.reply(flex.company_data(oneSecond))
+        })
+    }
+    else if (message == "2330每股盈餘") {
+      Promise.all([eps.eps_data(2330)])
+        .then(([oneSecond]) => {
+          event.reply(flex.flex_eps(oneSecond))
+        })
+    }
+    else if (message == "2330獲利能力") {
+      Promise.all([profitability.get_close_date()])
+        .then(([oneSecond]) => {
+          Promise.all([profitability.profitability_data(2330,oneSecond)])
+            .then(([oneSecond]) => {
+              event.reply(flex.flex_profitability(oneSecond)).then(function (data) {
+                // 當訊息成功回傳後的處理
+              })
+            })
+        })
+    }
+    else if (message == "2330股利政策") {
+      Promise.all([Dividend_policy.Dividend_policy_data(2330)])
+      .then(([oneSecond]) => {
+        event.reply(flex.flex_Dividend_policy(oneSecond))
+      })
+    }
     else {
       event.reply(message).then(function (data) {
         // 當訊息成功回傳後的處理
@@ -194,14 +260,19 @@ bot.on('message', function (event) {
 
 bot.on('follow', function (event) {
   userId = String(event.source.userId)
-  index.new_user_creat(userId)
-  event.reply("謝謝加入好友").then(function (data) {
-    // 當訊息成功回傳後的處理
-  }).catch(function (error) {
-    // 當訊息回傳失敗後的處理
-  });
+  client.getProfile(event.source.userId)
+    .then((profile) => {
+      user.user_insert(profile.userId, profile.displayName)
+    })
+    .catch((err) => {
+      // error handling
+    });
 });
 
+bot.on('unfollow', function (event) {
+  userId = String(event.source.userId)
+  user.user_delete(userId)
+});
 
 // Bot所監聽的webhook路徑與port
 bot.listen('/linewebhook', 3000, function () {
