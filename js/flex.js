@@ -5586,7 +5586,7 @@ module.exports.flex_profitability = function flex_profitability(array) {
             "size": "full",
             "aspectMode": "cover",
             "aspectRatio": "5:6",
-            "url": "https://i.imgur.com/Z5DjNvN.png",
+            "url": "https://i.imgur.com/vPkesTJ.png",
             "gravity": "top"
           },
           {
@@ -5597,7 +5597,8 @@ module.exports.flex_profitability = function flex_profitability(array) {
                 "type": "text",
                 "text": array[0],
                 "size": "20px",
-                "weight": "bold"
+                "weight": "bold",
+                "color": "#1E5128"
               }
             ],
             "position": "absolute",
@@ -5720,8 +5721,8 @@ module.exports.flex_profitability = function flex_profitability(array) {
             ],
             "position": "absolute",
             "offsetTop": "300px",
-            "offsetStart": "115px",
-            "width": "110px"
+            "offsetStart": "150px",
+            "width": "100px"
           }
         ],
         "paddingAll": "0px"
@@ -5730,8 +5731,152 @@ module.exports.flex_profitability = function flex_profitability(array) {
   }
   return text
 }
-//公司EPS
+//公司獲利能力
 
+module.exports.flex_finance_security = function flex_finance_security(array) {
+  let text = {
+    "type": "flex",
+    "altText": "this is a flex message",
+    "contents": {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "size": "full",
+            "aspectMode": "cover",
+            "aspectRatio": "5:6",
+            "url": "https://i.imgur.com/Bcq3sib.png",
+            "gravity": "top"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[0],
+                "size": "20px",
+                "weight": "bold",
+                "color": "#1E5128"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "40px",
+            "offsetStart": "25px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[1]+" "+array[2],
+                "weight": "bold",
+                "size": "25px",
+                "align": "center"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "115px",
+            "offsetStart": "155px",
+            "width": "130px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[3],
+                "weight": "bold",
+                "size": "18px",
+                "align": "end"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "160px",
+            "offsetStart": "170px",
+            "width": "100px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[4],
+                "weight": "bold",
+                "size": "18px",
+                "align": "end"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "192px",
+            "offsetStart": "170px",
+            "width": "100px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[5],
+                "weight": "bold",
+                "size": "18px",
+                "align": "end"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "220px",
+            "offsetStart": "170px",
+            "width": "100px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[6],
+                "weight": "bold",
+                "size": "18px",
+                "align": "end"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "248px",
+            "offsetStart": "170px",
+            "width": "100px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": array[7],
+                "weight": "bold",
+                "size": "18px",
+                "align": "end"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "278px",
+            "offsetStart": "170px",
+            "width": "100px"
+          }
+        ],
+        "paddingAll": "0px"
+      }
+    }
+  }
+  return text
+}
+//公司獲利能力
 
 
 

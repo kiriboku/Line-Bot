@@ -26,19 +26,18 @@ conn.connect(
 
 //資料庫連線設定
 
-module.exports.profitability_data = function profitability_data(stock) {
+module.exports.finance_security_data = function finance_security_data(stock) {
     return new Promise((resolve) => {
-        conn.query('SELECT * FROM profitability where stock = ? order by years Desc,quarter Desc;', [stock], (err, results) => {
+        conn.query('SELECT * FROM finance_security where stock = ? order by years Desc,quarter Desc;', [stock], (err, results) => {
             let array = []
             array.push(String(stock)+dict.dict_toCh(stock))
             array.push(results[0].years)
             array.push(results[0].quarter)
-            array.push(String(results[0].gpm)+"%")
-            array.push(String(results[0].opm)+"%")
-            array.push(String(results[0].pbt)+"%")
-            array.push(String(results[0].pat)+"%")
-            array.push(String(results[0].roe)+"%")
-            array.push(String(results[0].roa)+"%")
+            array.push(String(results[0].debts_ratio)+"%")
+            array.push(String(results[0].long_term_founds)+"%")
+            array.push(String(results[0].current_ratio)+"%")
+            array.push(String(results[0].quick_ratio)+"%")
+            array.push(String(results[0].interest_guarantee)+"倍")
             resolve(array)
         })
     })
